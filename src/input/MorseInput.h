@@ -19,7 +19,7 @@
 #endif
 
 // --- Timing ---
-#define MORSE_DEFAULT_WPM       15
+#define MORSE_DEFAULT_WPM       10
 #define MORSE_DEFAULT_DASH_RATIO 3
 #define MORSE_MIN_WPM           5
 #define MORSE_MAX_WPM           50
@@ -59,8 +59,8 @@ class MorseInput : public Observable<const InputEvent *>, public concurrency::OS
     // --- Computed timing (inline, called often) ---
     inline uint32_t dotMs()           const { return 1200 / wpm; }
     inline uint32_t dashThresholdMs() const { return dotMs() * (1 + dashRatio) / 2; }
-    inline uint32_t letterGapMs()     const { return dotMs() * 3; }
-    inline uint32_t wordGapMs()       const { return dotMs() * 7; }
+    inline uint32_t letterGapMs()     const { return dotMs() * 7; }  // generous for beginners
+    inline uint32_t wordGapMs()       const { return dotMs() * 15; } // clearly longer than letter gap
 
   protected:
     int32_t runOnce() override;
