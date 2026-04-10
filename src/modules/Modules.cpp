@@ -1,6 +1,7 @@
 #include "configuration.h"
 #ifdef MORSE_INPUT_ENABLED
 #include "input/MorseInput.h"
+#include "modules/MorseScreen.h"
 #endif
 #if !MESHTASTIC_EXCLUDE_INPUTBROKER
 #include "buzz/BuzzerFeedbackThread.h"
@@ -123,6 +124,7 @@ void setupModules()
 #ifdef MORSE_INPUT_ENABLED
         // MorseInput must be created after InputBroker so registerSource() succeeds
         morseInput = new MorseInput();
+        morseScreen = new MorseScreen();
 #endif
     }
 #endif

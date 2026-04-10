@@ -18,6 +18,7 @@
 #include "mesh/MeshService.h"
 #include "mesh/NodeDB.h"
 #include "mesh/Router.h"
+#include "modules/MorseScreen.h"
 #include <Preferences.h>
 
 MorseInput *morseInput = nullptr;
@@ -441,6 +442,10 @@ void MorseInput::sendToChannel(uint8_t channelIdx, const String &msg)
     p->decoded.payload.size = len;
 
     service->sendToMesh(p, RX_SRC_LOCAL);
+
+    // Show our own outgoing message in the chat history
+    if (morseScreen)
+        morseScreen->addOutgoing(msg);
 }
 
 // ---------------------------------------------------------------------------
