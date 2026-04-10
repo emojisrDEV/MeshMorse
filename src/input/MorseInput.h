@@ -59,8 +59,8 @@ class MorseInput : public Observable<const InputEvent *>, public concurrency::OS
     // --- Computed timing (inline, called often) ---
     inline uint32_t dotMs()           const { return 1200 / wpm; }
     inline uint32_t dashThresholdMs() const { return dotMs() * (1 + dashRatio) / 2; }
-    inline uint32_t letterGapMs()     const { return dotMs() * 7; }  // generous for beginners
-    inline uint32_t wordGapMs()       const { return dotMs() * 15; } // clearly longer than letter gap
+    inline uint32_t letterGapMs()     const { return dotMs() * 3; }
+    inline uint32_t wordGapMs()       const { return dotMs() * 7; }
 
   protected:
     int32_t runOnce() override;

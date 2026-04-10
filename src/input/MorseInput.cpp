@@ -164,21 +164,12 @@ void MorseInput::onLetterGap()
         if (mode == MorseMode::TEXT || mode == MorseMode::COMMAND) {
             doBackspace();
         }
-        currentMorse   = "";
-        releaseMs      = millis();
-        letterGapFired = false;
-        wordGapFired   = false;
+        currentMorse = "";
         return;
     }
 
     char c = decodeMorse(currentMorse);
     currentMorse = "";
-
-    // Reset gap timer from letter decode time so the word gap gives the user
-    // a full wordGapMs() after *each* letter, not just after the last button release.
-    releaseMs      = millis();
-    letterGapFired = false;
-    wordGapFired   = false;
 
     if (c == '?') return;  // Unknown pattern — ignore silently
 
